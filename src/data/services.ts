@@ -23,8 +23,15 @@ export const services: Service[] = [
     slug: "data-analytics",
     title: "Data & Analytics",
     description:
-      "We turn the data your business already collects into reporting people trust and use. That means dashboards and metrics defined with your team, built on numbers that reconcile — so decisions start from a shared view instead of three conflicting spreadsheets.",
+      "We dig into the data your business already collects to answer specific questions — what is driving a change, which customers behave differently, whether something actually worked. You get analysis you can act on, with the assumptions and caveats stated plainly rather than buried.",
     icon: "chart",
+  },
+  {
+    slug: "business-intelligence",
+    title: "Business Intelligence",
+    description:
+      "We build the reporting layer your business runs on: governed metrics, dashboards people actually open, and self-service tools that let teams answer routine questions without waiting on anyone. The aim is one agreed definition per number, so revenue means the same thing in every meeting.",
+    icon: "gauge",
   },
   {
     slug: "data-engineering",
@@ -39,5 +46,12 @@ export const services: Service[] = [
     description:
       "We help you work out where statistics and machine learning genuinely pay off, and where simpler answers will do. From framing the problem through to a model running in production, we stay focused on results you can measure against the decision you are trying to make.",
     icon: "insight",
+  },
+  {
+    slug: "artificial-intelligence",
+    title: "Artificial Intelligence Consulting",
+    description:
+      "We help you apply AI where it genuinely earns its place — document processing, assistants that answer from your own material, forecasting, and automating work that is repetitive rather than judgement-heavy. We are candid about where today's models fall short, and we build with evaluation and human review in place from the start.",
+    icon: "network",
   },
 ];

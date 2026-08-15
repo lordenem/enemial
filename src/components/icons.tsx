@@ -74,6 +74,33 @@ export function InsightIcon(props: IconProps) {
   );
 }
 
+/** Business intelligence — performance dial. */
+export function GaugeIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4 17.5a8 8 0 1 1 16 0" />
+      <path d="m12 17.5 3.9-4.3" />
+      <circle cx="12" cy="17.5" r="1.15" />
+      <path d="M4 17.5h1.6M18.4 17.5H20M12 8.4v1.6" />
+    </Icon>
+  );
+}
+
+/** Artificial intelligence — layered node graph. */
+export function NetworkIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="4.75" cy="12" r="1.95" />
+      <circle cx="12" cy="12" r="1.95" />
+      <circle cx="19.25" cy="6.75" r="1.95" />
+      <circle cx="19.25" cy="17.25" r="1.95" />
+      <path d="M6.7 12h3.35" />
+      <path d="m13.6 10.6 4.1-2.9" />
+      <path d="m13.6 13.4 4.1 2.9" />
+    </Icon>
+  );
+}
+
 /** Products — layered stack. */
 export function StackIcon(props: IconProps) {
   return (
@@ -193,6 +220,8 @@ export const icons = {
   chart: ChartIcon,
   pipeline: PipelineIcon,
   insight: InsightIcon,
+  gauge: GaugeIcon,
+  network: NetworkIcon,
   stack: StackIcon,
   services: ServicesIcon,
   signature: SignatureIcon,

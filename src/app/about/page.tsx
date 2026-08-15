@@ -71,8 +71,9 @@ export default function AboutPage() {
               Consulting and services
             </h3>
             <p className="mt-3 leading-relaxed text-ink-600">
-              Software development, data and analytics, data engineering, and
-              data science consulting for client organisations.
+              Software development, data engineering, analytics and business
+              intelligence, data science, and AI consulting for client
+              organisations.
             </p>
           </article>
         </div>

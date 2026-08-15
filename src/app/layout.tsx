@@ -30,7 +30,9 @@ export const metadata: Metadata = {
     "data consulting Gaborone",
     "SaaS Botswana",
     "data engineering",
+    "business intelligence",
     "data science consulting",
+    "AI consulting",
     site.name,
   ],
   authors: [{ name: site.legalName }],
@@ -66,7 +68,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-600 focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-60 focus:rounded-full focus:bg-brand-600 focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
         >
           Skip to content
         </a>

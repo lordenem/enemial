@@ -111,9 +111,9 @@ export default function HomePage() {
               Consulting services
             </h3>
             <p className="mt-3 flex-1 leading-relaxed text-ink-600">
-              Software development, data and analytics, data engineering, and
-              data science consulting — the same engineering practice we use on
-              our own products, applied to yours.
+              Software development, data engineering, analytics and business
+              intelligence, data science, and AI consulting — the same
+              engineering practice we use on our own products, applied to yours.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent-700">
               See our services
@@ -182,7 +182,7 @@ export default function HomePage() {
 
             {/* Decorative product panel */}
             <div className="relative" aria-hidden>
-              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-brand-500/25 via-transparent to-accent-500/15 blur-2xl" />
+              <div className="absolute -inset-4 rounded-4xl bg-linear-to-br from-brand-500/25 via-transparent to-accent-500/15 blur-2xl" />
               <div className="relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500 text-white">
@@ -266,7 +266,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Consulting"
           title="Software and data expertise, on your side of the table"
-          description="Four service lines covering the work most businesses need help with — from building the software to making sense of the data it produces."
+          description="Service lines covering the work most businesses need help with — from building the software, to making sense of the data it produces, to putting AI to practical use."
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
