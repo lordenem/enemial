@@ -91,8 +91,8 @@ export default function HomePage() {
             </h3>
             <p className="mt-3 flex-1 leading-relaxed text-ink-600">
               SaaS platforms we design, build, and operate ourselves — starting
-              with Attestway for digital signatures and document workflow, with
-              FunInvite in development behind it.
+              with Attestway for digital signatures and document workflow, and
+              FunInvite for events and digital invitations.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand-700">
               See our products
@@ -111,7 +111,7 @@ export default function HomePage() {
               Consulting services
             </h3>
             <p className="mt-3 flex-1 leading-relaxed text-ink-600">
-              Software development, data engineering, analytics and business
+              Software and game development, data engineering, analytics and business
               intelligence, data science, and AI consulting — the same
               engineering practice we use on our own products, applied to yours.
             </p>
@@ -230,10 +230,10 @@ export default function HomePage() {
 
       {/* Secondary product — FunInvite */}
       <Section spacing="tight">
-        <div className="rounded-3xl border border-dashed border-ink-300 bg-white/60 p-8 sm:p-10">
+        <div className="rounded-3xl border border-ink-200 bg-white p-8 sm:p-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex gap-5">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ink-100 text-ink-500">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-500 text-white">
                 <InviteIcon className="h-6 w-6" />
               </span>
               <div>
@@ -241,22 +241,29 @@ export default function HomePage() {
                   <h2 className="font-display text-xl font-semibold text-ink-900">
                     {funinvite.name}
                   </h2>
-                  <Badge tone="neutral">{funinvite.statusLabel}</Badge>
+                  <Badge tone="brand">{funinvite.statusLabel}</Badge>
                 </div>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-600">
-                  {funinvite.tagline} Currently in development and not yet
-                  available.
+                  {funinvite.tagline} Plan the occasion, invite your guests,
+                  and see who is coming.
                 </p>
               </div>
             </div>
 
-            <Link
-              href="/products"
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-ink-700 transition hover:text-brand-700"
-            >
-              More about FunInvite
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
+            <div className="flex shrink-0 flex-col gap-3 sm:items-end">
+              {funinvite.url ? (
+                <ButtonLink href={funinvite.url} external>
+                  {funinvite.ctaLabel}
+                </ButtonLink>
+              ) : null}
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 text-sm font-medium text-ink-700 transition hover:text-brand-700"
+              >
+                More about FunInvite
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </Section>

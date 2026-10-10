@@ -20,6 +20,13 @@ export const services: Service[] = [
     icon: "code",
   },
   {
+    slug: "game-development",
+    title: "Game Development",
+    description:
+      "We design and build games for web, mobile, and desktop — from small branded and educational games to full titles. We prototype early so you can play the idea before committing to it, and we handle the unglamorous parts too: performance on real devices, store submission, and updates after launch.",
+    icon: "gamepad",
+  },
+  {
     slug: "data-analytics",
     title: "Data & Analytics",
     description:

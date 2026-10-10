@@ -3,7 +3,7 @@
  * home page (if `featured`) and the products page automatically.
  */
 
-export type ProductStatus = "launching" | "in-development";
+export type ProductStatus = "live" | "launching" | "in-development";
 
 export type Product = {
   slug: string;
@@ -48,16 +48,16 @@ export const products: Product[] = [
     name: "FunInvite",
     tagline: "Event creation and digital invitations.",
     description:
-      "FunInvite is a platform for creating events and sending digital invitations — planning the occasion, inviting guests, and tracking who is coming, without the group-chat spreadsheet. It is currently in development and not yet available.",
+      "FunInvite is a platform for creating events and sending digital invitations — planning the occasion, inviting guests, and tracking who is coming, without the group-chat spreadsheet.",
     highlights: [
       "Event creation",
       "Digital invitations",
       "Guest responses in one place",
     ],
-    status: "in-development",
-    statusLabel: "In development",
-    url: null,
-    ctaLabel: null,
+    status: "live",
+    statusLabel: "Live",
+    url: "https://www.fun-invite.com/",
+    ctaLabel: "Visit FunInvite",
     featured: false,
   },
 ];

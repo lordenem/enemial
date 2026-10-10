@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   keywords: [
     "software development Botswana",
     "data consulting Gaborone",
+    "game development Botswana",
     "SaaS Botswana",
     "data engineering",
     "business intelligence",

@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Services",
   description:
-    "Software, data, and AI consulting from Enemial Technologies — software development, data and analytics, business intelligence, data engineering, data science, and artificial intelligence consulting.",
+    "Software, data, and AI consulting from Enemial Technologies — software development, game development, data and analytics, business intelligence, data engineering, data science, and artificial intelligence consulting.",
   path: "/services",
 });
 
@@ -21,7 +21,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="Services"
         title="Software, data, and AI consulting"
-        description="We work with businesses that need software built well and data they can actually rely on. Six service lines, one engineering team behind all of them."
+        description="We work with businesses that need software built well and data they can actually rely on. Seven service lines, one engineering team behind all of them."
       >
         <div className="flex flex-wrap gap-2">
           {services.map((service) => (

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import {
   ArrowRightIcon,
@@ -16,7 +15,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Products",
   description:
-    "The SaaS products built and owned by Enemial Technologies — Attestway for digital signatures and document workflow, and FunInvite, currently in development.",
+    "The SaaS products built and owned by Enemial Technologies — Attestway for digital signatures and document workflow, and FunInvite for events and digital invitations.",
   path: "/products",
 });
 
@@ -108,20 +107,20 @@ export default function ProductsPage() {
         </div>
       </Section>
 
-      {/* FunInvite — in development, no signup CTA */}
+      {/* FunInvite */}
       <section className="border-t border-ink-200 bg-ink-50 py-20 sm:py-24">
         <Container>
-          <div className="rounded-3xl border border-dashed border-ink-300 bg-white p-8 sm:p-12">
+          <div className="rounded-3xl border border-ink-200 bg-white p-8 sm:p-12">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-7">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink-100 text-ink-500">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500 text-white">
                     <InviteIcon className="h-6 w-6" />
                   </span>
                   <h2 className="font-display text-3xl font-semibold text-ink-900">
                     {funinvite.name}
                   </h2>
-                  <Badge tone="neutral">{funinvite.statusLabel}</Badge>
+                  <Badge tone="brand">{funinvite.statusLabel}</Badge>
                 </div>
 
                 <p className="mt-6 text-lg leading-relaxed text-ink-800">
@@ -131,12 +130,23 @@ export default function ProductsPage() {
                 <p className="mt-4 leading-relaxed text-ink-600">
                   {funinvite.description}
                 </p>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  {funinvite.url ? (
+                    <ButtonLink href={funinvite.url} size="lg" external>
+                      {funinvite.ctaLabel}
+                    </ButtonLink>
+                  ) : null}
+                  <ButtonLink href="/contact" variant="secondary" size="lg">
+                    Ask us about FunInvite
+                  </ButtonLink>
+                </div>
               </div>
 
               <div className="lg:col-span-5">
                 <div className="rounded-2xl bg-ink-50 p-6">
                   <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-ink-500">
-                    Planned capabilities
+                    What it handles
                   </h3>
                   <ul className="mt-5 space-y-3">
                     {funinvite.highlights.map((highlight) => (
@@ -144,23 +154,23 @@ export default function ProductsPage() {
                         key={highlight}
                         className="flex items-start gap-3 text-sm text-ink-700"
                       >
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-400" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
                         {highlight}
                       </li>
                     ))}
                   </ul>
 
-                  <p className="mt-6 border-t border-ink-200 pt-5 text-sm leading-relaxed text-ink-500">
-                    Not open for signup yet. If you would like to hear when
-                    FunInvite launches,{" "}
-                    <Link
-                      href="/contact"
-                      className="font-medium text-brand-700 underline underline-offset-4 transition hover:text-brand-800"
+                  {funinvite.url ? (
+                    <a
+                      href={funinvite.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand-700 transition hover:text-brand-800"
                     >
-                      send us a note
-                    </Link>{" "}
-                    and we will add you to the list.
-                  </p>
+                      Read more at fun-invite.com
+                      <ArrowRightIcon className="h-4 w-4" />
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </div>

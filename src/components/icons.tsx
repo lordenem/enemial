@@ -36,6 +36,18 @@ export function CodeIcon(props: IconProps) {
   );
 }
 
+/** Game development — controller with a d-pad and buttons. */
+export function GamepadIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M7.5 7h9a4.5 4.5 0 0 1 4.4 3.6l.9 4.6a2.6 2.6 0 0 1-4.6 2.1L15.5 15h-7l-1.7 2.3a2.6 2.6 0 0 1-4.6-2.1l.9-4.6A4.5 4.5 0 0 1 7.5 7Z" />
+      <path d="M8 9.5v3M6.5 11h3" />
+      <circle cx="15.5" cy="10.25" r=".75" />
+      <circle cx="17.25" cy="12" r=".75" />
+    </Icon>
+  );
+}
+
 /** Data & analytics — bar chart with a trend line. */
 export function ChartIcon(props: IconProps) {
   return (
@@ -217,6 +229,7 @@ export function CloseIcon(props: IconProps) {
 /** Icons selectable from data files (see `@/data/services`). */
 export const icons = {
   code: CodeIcon,
+  gamepad: GamepadIcon,
   chart: ChartIcon,
   pipeline: PipelineIcon,
   insight: InsightIcon,
