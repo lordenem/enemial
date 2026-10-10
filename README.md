@@ -37,7 +37,7 @@ src/
 │   ├── layout/             # Header, Footer, PageHeader
 │   ├── ui/                 # Button, Badge, Container, Section
 │   ├── icons.tsx           # self-contained SVG icon set
-│   ├── ContactForm.tsx     # Web3Forms-backed form (client component)
+│   ├── ContactForm.tsx     # posts to deploy/mailer (client component)
 │   └── ServiceCard.tsx
 ├── data/                   # ← edit copy here
 │   ├── site.ts             # company details, contact info, nav, form key
@@ -54,7 +54,6 @@ automatically.
 
 | What | Where |
 | --- | --- |
-| Web3Forms access key | `src/data/site.ts` → `WEB3FORMS_ACCESS_KEY`, or set `NEXT_PUBLIC_WEB3FORMS_KEY` |
 | Production domain | `src/data/site.ts` → `site.url` (currently `https://enemial.com`) — drives canonical URLs, OG tags, and the sitemap |
 | Attestway URL | `src/data/products.ts` → `url` (currently `https://attestway.com`) |
 | Company registration number | `src/data/site.ts` → `registrationNumber` (empty; the footer omits it until set) |
@@ -64,22 +63,30 @@ automatically.
 
 ### Contact form
 
-The form posts directly from the browser to the Web3Forms API, which is what
-keeps the site fully static. Get a free access key at
-<https://web3forms.com> — it is emailed to you, no account required — and put it
-in `src/data/site.ts`. The key is public by design and only permits submitting
-to the inbox it was issued for. **The form will not deliver anything until this
-is set.**
+The form posts to `/api/contact`, which Caddy routes to a small mailer
+container (`deploy/mailer/app.py`, Python standard library only). It sends each
+enquiry to every address in `CONTACT_TO` through the company mailbox's SMTP,
+with Reply-To set to the visitor, and drops bot submissions (honeypot, a
+signed load-time token, content checks, a per-IP rate limit).
+
+Its settings live in `~/enemial/.env` on the server, never in the repo — see
+`deploy/mailer.env.example`. `npm run dev` has no `/api`, so the form only
+works on the deployed site.
 
 ## Deploying
 
-The build output is a static directory (`out/`), so any static host works.
+Hosted on the shared Hetzner box (`ssh hetzner`), in `~/enemial`:
 
-**Vercel** — import the repo; the defaults are correct (build `npm run build`,
-output directory `out`).
+- `enemial-web-1` — nginx serving the static `out/`
+- `enemial-mailer-1` — the contact-form mailer
+- the shared Caddy (AttestWay's stack, `/opt/attestway/Caddyfile`) terminates
+  TLS for enemialtechnologies.com and routes to both; `deploy/Caddyfile.enemial`
+  is the reference copy of that block.
 
-**Cloudflare Pages** — framework preset *Next.js (Static HTML Export)*, build
-command `npm run build`, output directory `out`.
+To publish a change: `npm run build`, copy `out/` to `~/enemial/out`, then
+`docker compose restart web` in `~/enemial`. The restart matters if `out/` was
+replaced rather than overwritten: the container stays bound to the old
+directory and serves 403/404 for every page until restarted.
 
 `trailingSlash: true` is set in `next.config.ts` so routes emit
 `about/index.html` rather than `about.html`, which static hosts route more

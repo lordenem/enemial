@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/icons";
-import { WEB3FORMS_ACCESS_KEY, site } from "@/data/site";
+import { contact } from "@/data/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -13,12 +13,23 @@ const fieldClasses =
 const labelClasses = "block text-sm font-medium text-ink-800";
 
 /**
- * Posts directly to the Web3Forms API — no backend required, which keeps the
- * site a pure static export. Set the access key in `@/data/site`.
+ * Posts to the mailer on our own server (deploy/mailer), which Caddy serves
+ * at /api/* on the site's domain — the site itself stays a static export.
+ *
+ * The token is fetched when the form loads and records that moment; the
+ * mailer rejects posts made sooner than a person could type one.
  */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    fetch("/api/contact/token")
+      .then((response) => response.json())
+      .then((result: { token?: string }) => setToken(result.token ?? ""))
+      .catch(() => {});
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -27,17 +38,15 @@ export function ContactForm() {
     setError(null);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `New enquiry from the ${site.name} website`,
-          from_name: site.name,
           ...Object.fromEntries(new FormData(form)),
+          token,
         }),
       });
 
@@ -53,12 +62,12 @@ export function ContactForm() {
       setStatus("error");
       setError(
         result.message ??
-          "We could not send your message. Please try again, or email us directly.",
+          `We could not send your message. Please try again, or email us at ${contact.email}.`,
       );
     } catch {
       setStatus("error");
       setError(
-        "We could not reach the mail service. Please check your connection, or email us directly.",
+        `We could not reach the mail service. Please check your connection, or email us at ${contact.email}.`,
       );
     }
   }
@@ -95,6 +104,7 @@ export function ContactForm() {
       <input
         type="checkbox"
         name="botcheck"
+        value="1"
         className="hidden"
         tabIndex={-1}
         autoComplete="off"

@@ -1,0 +1,26 @@
+# Enemial Technologies' site block for the SHARED Caddy on the Hetzner box.
+#
+# The live file is /opt/attestway/Caddyfile; this is the reference copy. Keep
+# them in sync. Add it with enable-caddy-site.sh, which refuses to run until
+# DNS points here - Caddy's HTTP-01 certificate challenge fails otherwise and
+# burns the Let's Encrypt rate limit.
+
+enemialtechnologies.com {
+	encode zstd gzip
+
+	# The contact form's mailer (deploy/mailer). Enquiries are small.
+	handle /api/* {
+		request_body {
+			max_size 32KB
+		}
+		reverse_proxy enemial-mailer-1:8000
+	}
+
+	handle {
+		reverse_proxy enemial-web-1:80
+	}
+}
+
+www.enemialtechnologies.com {
+	redir https://enemialtechnologies.com{uri} permanent
+}

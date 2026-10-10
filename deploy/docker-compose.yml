@@ -1,0 +1,56 @@
+# Enemial Technologies' marketing site on the shared Hetzner box.
+#
+# The site is a static export (`npm run build` -> out/), so this is just nginx
+# serving files. TLS is not here: the shared Caddy in AttestWay's compose stack
+# owns 80/443 and proxies enemialtechnologies.com to this container over the
+# shared_infra network - see Caddyfile.enemial.
+#
+# Deploy: copy out/ to ~/enemial/out on the server, then
+# `docker compose restart web`. If out/ is replaced rather than overwritten,
+# the bind mount keeps pointing at the old directory and every page 404s
+# until the restart.
+services:
+  web:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    volumes:
+      - ./out:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - shared_infra
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "/dev/null", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Contact-form mailer - see mailer/app.py. Settings (SMTP password
+  # included) come from .env on the server, never the repo.
+  mailer:
+    image: python:3.12-alpine
+    restart: unless-stopped
+    command: ["python", "-u", "/app/app.py"]
+    env_file: .env
+    volumes:
+      - ./mailer/app.py:/app/app.py:ro
+    networks:
+      - shared_infra
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "/dev/null", "http://127.0.0.1:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  shared_infra:
+    external: true

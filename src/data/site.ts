@@ -7,8 +7,8 @@ export const site = {
   name: "Enemial Technologies",
   legalName: "Enemial Technologies (Pty) Ltd",
   shortName: "Enemial",
-  /** Update this to the real production domain before launch — used for canonical + OG URLs. */
-  url: "https://enemial.com",
+  /** The production domain — used for canonical + OG URLs and the sitemap. */
+  url: "https://enemialtechnologies.com",
   tagline: "We build software products, and we help you build yours.",
   description:
     "Enemial Technologies is a Gaborone-based software company building our own SaaS products and providing software and data consulting to businesses.",
@@ -21,7 +21,7 @@ export const site = {
 } as const;
 
 export const contact = {
-  email: "nmampare@gmail.com",
+  email: "nmampare@enemialtechnologies.com",
   phones: ["+267 74750403", "+267 74996392"],
   address: {
     line1: "Plot 77372, Gaborone North",
@@ -30,17 +30,6 @@ export const contact = {
     country: "Botswana",
   },
 } as const;
-
-/**
- * Web3Forms access key. Create a free key at https://web3forms.com (no account
- * needed — it is emailed to you) and paste it here, or set
- * NEXT_PUBLIC_WEB3FORMS_KEY in the deployment environment.
- *
- * Note: this key is public by design; it only permits submitting to the inbox
- * it was issued for.
- */
-export const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "YOUR-WEB3FORMS-ACCESS-KEY";
 
 export const nav = [
   { href: "/", label: "Home" },
