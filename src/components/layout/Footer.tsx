@@ -4,7 +4,7 @@ import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { Container } from "@/components/ui/Container";
 import { products } from "@/data/products";
 import { contact, nav, site } from "@/data/site";
-import { services } from "@/data/services";
+import { serviceHref, services } from "@/data/services";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -54,7 +54,7 @@ export function Footer() {
                 {services.map((service) => (
                   <li key={service.slug}>
                     <Link
-                      href={`/services#${service.slug}`}
+                      href={serviceHref(service)}
                       className="text-ink-400 transition hover:text-brand-300"
                     >
                       {service.title}

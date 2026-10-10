@@ -45,7 +45,12 @@ export default function ServicesPage() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {services.map((service) => (
-            <ServiceCard key={service.slug} service={service} anchored />
+            <ServiceCard
+              key={service.slug}
+              service={service}
+              anchored
+              illustrated
+            />
           ))}
         </div>
       </Section>
